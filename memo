@@ -1,0 +1,5 @@
+docker build . -t martinosearch/employee-client
+
+docker push martinosearch/employee-client
+
+k apply -f deployment.yml

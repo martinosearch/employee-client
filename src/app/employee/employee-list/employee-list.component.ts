@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ApiResponse } from 'src/app/models/api-response';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
 

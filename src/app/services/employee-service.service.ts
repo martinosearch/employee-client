@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../models/api-response';
 import { Employee } from '../models/employee';
 
@@ -8,8 +9,7 @@ import { Employee } from '../models/employee';
   providedIn: 'root'
 })
 export class EmployeeServiceService {
-  //private baseUrl: string = environment.baseUrl + '/api/employees/';
-  private baseUrl: string = 'http://localhost:9002/api/employees';
+  private baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class EmployeeServiceService {
   }
 
   getEmployeeById(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + id);
+    return this.http.get(this.baseUrl + "/" + id);
   }
 
   createEmployee(employee: Employee): Observable<ApiResponse> {
@@ -26,10 +26,10 @@ export class EmployeeServiceService {
   }
 
   updateEmployee(id: number, employee: Employee): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(this.baseUrl + employee.id, employee);
+    return this.http.put<ApiResponse>(this.baseUrl + "/" + employee.id, employee);
   }
 
   deleteEmployee(id: number): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(this.baseUrl + id);
+    return this.http.delete<ApiResponse>(this.baseUrl + "/" + id);
   }
 }
