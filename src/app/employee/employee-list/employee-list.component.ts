@@ -13,25 +13,26 @@ export class EmployeeListComponent implements OnInit {
   employees: Observable<Employee[]> | undefined;
 
   dtOptions: DataTables.Settings = {};
+
   @ViewChild('dtOptions', { static: true }) table: any;
   constructor(private employeeService: EmployeeServiceService,
     private router: Router) {
+
     setTimeout(function () {
       $(function () {
         $('#example').DataTable();
       });
-    }, 2000);
-
+    }, 1000);
   }
 
   ngOnInit() {
     this.employees = this.employeeService.getEmployees();
-    setTimeout(function () {
+
+    this.employees.subscribe(function () {
       $(function () {
         $('#example').DataTable();
       });
-    }, 2000);
-
+    });
   }
 
   deleteEmployee(id: number) {

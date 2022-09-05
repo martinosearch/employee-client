@@ -24,6 +24,7 @@ export class EmployeeCreateComponent implements OnInit {
     this.submitted = true;
     this.employeeService.createEmployee(this.employee)
       .subscribe(data => console.log(data), error => console.log(error));
+      
     this.employee = new Employee();
     this.router.navigate(['/employees']);
   }

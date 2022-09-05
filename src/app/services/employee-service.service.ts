@@ -9,27 +9,27 @@ import { Employee } from '../models/employee';
   providedIn: 'root'
 })
 export class EmployeeServiceService {
-  private baseUrl: string = environment.baseUrl;
+  private baseUrl: string = environment.baseUrl+"/employees";
 
   constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl);
+    return this.http.get<Employee[]>(this.baseUrl+"/list");
   }
 
   getEmployeeById(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + "/" + id);
+    return this.http.get(this.baseUrl + "/find/" + id);
   }
 
   createEmployee(employee: Employee): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(this.baseUrl, employee);
+    return this.http.post<ApiResponse>(this.baseUrl+"/save", employee);
   }
 
   updateEmployee(id: number, employee: Employee): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(this.baseUrl + "/" + employee.id, employee);
+    return this.http.put<ApiResponse>(this.baseUrl + "/update/" + employee.id, employee);
   }
 
   deleteEmployee(id: number): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(this.baseUrl + "/" + id);
+    return this.http.delete<ApiResponse>(this.baseUrl + "/delete/" + id);
   }
 }
