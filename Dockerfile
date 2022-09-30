@@ -3,11 +3,11 @@ FROM node:16.16.0-alpine as builder
 WORKDIR /app
 ADD package*.json ./
 
-#RUN apk update && apk add bash
+# RUN apk update && apk add bash
 RUN npm install
 COPY . .
 
-#RUN npm run-script build
+# RUN npm run-script build
 RUN npm run build
 
 CMD [ "npm", "start"]
